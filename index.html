@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="γ-MOD: Mixture-of-Depth Adaptation for Multimodal Large Language Models">
+    <meta name="keywords" content="γ-MOD, Mixture-of-Depth, MLLMs, AI, Machine Learning">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>γ-MOD: Mixture-of-Depth Adaptation for Multimodal Large Language Models</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/images/favicon.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+            <a class="navbar-item" href="#abstract">
+                <span class="icon"><i class="fas fa-align-justify"></i></span>
+                <span>Abstract</span>
+            </a>
+            <a class="navbar-item" href="#method">
+                <span class="icon"><i class="fas fa-cogs"></i></span>
+                <span>Method</span>
+            </a>
+            <a class="navbar-item" href="#results">
+                <span class="icon"><i class="fas fa-chart-bar"></i></span>
+                <span>Results</span>
+            </a>
+            <a class="navbar-item" href="#visualization">
+                <span class="icon"><i class="fas fa-eye"></i></span>
+                <span>Visualization</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">γ-MOD: Mixture-of-Depth Adaptation for Multimodal Large Language Models</h1>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">
+                            <a href="mailto:yaxinluo999@163.com">Yaxin Luo</a><sup>1</sup>,
+                        </span>
+                        <span class="author-block">
+                            Gen Luo<sup>2,*</sup>,
+                        </span>
+                        <span class="author-block">
+                            Jiayi Ji<sup>3</sup>,
+                        </span>
+                        <span class="author-block">
+                            Yiyi Zhou<sup>3</sup>,
+                        </span>
+                        <span class="author-block">
+                            Xiaoshuai Sun<sup>3</sup>,
+                        </span>
+                        <span class="author-block">
+                            Zhiqiang Shen<sup>4</sup>,
+                        </span>
+                        <span class="author-block">
+                            Rongrong Ji<sup>3</sup>
+                        </span>
+                    </div>
+                    
+                    <div class="is-size-5 publication-institutions">
+                        <span class="institution-block"><sup>1</sup>Technical University of Denmark,</span>
+                        <span class="institution-block"><sup>2</sup>Shanghai AI Laboratory,</span>
+                        <span class="institution-block"><sup>3</sup>Xiamen University,</span>
+                        <span class="institution-block"><sup>4</sup>National University of Singapore,</span>
+                        <span class="institution-block"><sup>5</sup>MBZUAI</span>
+                    </div>
+                    <div class="is-size-6 corresponding-author-note">
+                        <span><sup>*</sup>Corresponding author</span>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                            <!-- ArXiv Link. -->
+                            <span class="link-block">
+                                <a href="https://arxiv.org/abs/placeholder" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="ai ai-arxiv"></i>
+                                    </span>
+                                    <span>arXiv</span>
+                                </a>
+                            </span>
+                            <!-- Code Link. -->
+                            <span class="link-block">
+                                <a href="https://github.com/Yaxin9Luo/Gamma-MOD" class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="fab fa-github"></i>
+                                    </span>
+                                    <span>Code</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <!-- Abstract -->
+        <div id="abstract" class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        We present γ-MOD, a novel approach to enhance computational efficiency in Multimodal Large Language Models (MLLMs) by incorporating Mixture-of-Depth (MoD) layers. This plug-and-play strategy seamlessly replaces redundant dense layers, significantly reducing computational costs while maintaining performance. Despite recent advancements in MLLMs, their high computational demands have limited practical applications, especially for real-time inference. γ-MOD tackles this challenge by introducing a new paradigm that focuses on reducing activated tokens, offering superior efficiency compared to existing methods.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--/ Abstract -->
+
+        <!-- Method -->
+        <div id="method" class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Method</h2>
+                <div class="content has-text-justified">
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li><strong>ARank Metric:</strong> Guides the replacement of redundant layers with MoD layers.</li>
+                        <li><strong>Shared Vision-Language Router:</strong> Facilitates cross-modality token routing.</li>
+                        <li><strong>Masked Routing Learning:</strong> Prevents critical tokens from being skipped during model adaptation.</li>
+                    </ul>
+                    <img src="asset/model_arch.png" alt="Gamma-MOD Architecture" style="max-width: 100%;">
+                </div>
+            </div>
+        </div>
+        <!--/ Method -->
+
+        <!-- Results -->
+        <div id="results" class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Results</h2>
+                <div class="content has-text-justified">
+                    <p>γ-MOD was tested on <strong>three popular MLLMs</strong> across <strong>9 benchmark datasets</strong>.</p>
+                    <ul>
+                        <li><strong>LLaVA-HR:</strong> Training time reduced by <strong>31%</strong> and inference time by <strong>53.2%</strong>, with only <strong>1.5%</strong> accuracy drop.</li>
+                        <li><strong>Generalization:</strong> Demonstrated the ability to generalize across different MLLMs.</li>
+                    </ul>
+                    <img src="asset/compare_others.png" alt="Comparison with Other Models" style="max-width: 100%;">
+                    <img src="asset/scalable.png" alt="Scalability Results" style="max-width: 100%;">
+                    
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Training Time Reduction</th>
+                                <th>Inference Time Reduction</th>
+                                <th>Accuracy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>γ-MoD-LLaVA-HR-7B</td>
+                                <td>31.0%</td>
+                                <td>53.2%</td>
+                                <td>-1.5%</td>
+                            </tr>
+                            <tr>
+                                <td>γ-MoD-LLaVA-HR-13B</td>
+                                <td>18.8%</td>
+                                <td>50.4%</td>
+                                <td>-0.3%</td>
+                            </tr>
+                            <tr>
+                                <td>γ-MoD-LLaVA-HR-X-13B</td>
+                                <td>17.4%</td>
+                                <td>58.6%</td>
+                                <td>+0.4%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/ Results -->
+
+        <!-- Visualization -->
+        <div id="visualization" class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Visualization</h2>
+                <div class="content has-text-justified">
+                    <p>Our γ-MOD approach demonstrates impressive efficiency in routing tokens and focusing on critical information.</p>
+                    <img src="asset/visualization.png" alt="Visualization of Routing and Skipped Content" style="max-width: 100%;">
+                    <h3>Key Observations:</h3>
+                    <ol>
+                        <li><strong>Consistent Routing Patterns:</strong> Question tokens are mostly retained, image tokens show the highest redundancy, and response tokens fall between these two extremes.</li>
+                        <li><strong>Efficient Content Skipping:</strong> Gray areas in images represent skipped tokens, while white areas highlight regions the model focuses on more intensely.</li>
+                        <li><strong>Improved Focus on Critical Information:</strong> By routing out redundant tokens, the model can allocate more computational resources to important areas, leading to more accurate responses.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!--/ Visualization -->
+
+        <!-- Citation -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Citation</h2>
+                <div class="content has-text-justified">
+                    <p>If you use γ-MOD in your work, please cite:</p>
+                    <pre><code>@inproceedings{anonymous2025gammaMOD,
+  title={γ-MOD: Exploring Mixture-of-Depth Adaptation for Multimodal Large Language Models},
+  author={Anonymous},
+  booktitle={International Conference on Learning Representations},
+  year={2025}
+}</code></pre>
+                </div>
+            </div>
+        </div>
+        <!--/ Citation -->
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                For questions, please reach out to <a href="mailto:yaxinluo999@163.com">Yaxin Luo</a>.
+            </p>
+            <p>
+                &copy; 2024 Gamma-MOD Project. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
